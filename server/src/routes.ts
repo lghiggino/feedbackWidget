@@ -5,6 +5,14 @@ import { SubmitFeedbackService } from "./services/submitFeedbackService";
 
 export const routes = Router()
 
+routes.get('/', (req, res) => {
+    res.send(`<div> 
+    <a href="https://feedback-widget-gules.vercel.app/"> 
+    <h1>NLW Return</h1>   
+    </a>
+    </div>`)
+})
+
 routes.get('/health', (req, res) => {
     res.json(`I am healthy at ${Date.now()}`)
 })
