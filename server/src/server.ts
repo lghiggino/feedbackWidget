@@ -1,6 +1,9 @@
+import dotenv from 'dotenv'
 import express from 'express'
 import cors from 'cors'
 import { routes } from './routes';
+
+dotenv.config()
 
 const app = express()
 
@@ -9,6 +12,6 @@ app.use(cors())
 //{ origin: 'http://localhost:3000' }
 app.use(routes)
 
-app.listen(3333, () => {
-    console.log('HTTP server running')
+app.listen(process.env.PORT, () => {
+    console.log(`HTTP server running in port ${process.env.PORT}`)
 })
