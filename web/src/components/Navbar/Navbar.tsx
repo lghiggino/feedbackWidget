@@ -1,6 +1,14 @@
+import { useState } from "react"
 import { Popover } from "@headlessui/react"
+import { LoggedInNavigation } from "./LoggedInNavigation"
 
-export function Navbar() {
+
+
+export function Navbar({ navState, setNavState }: any) {
+    const [user, setUser] = useState<boolean>(false)
+    const activeButtonClass = "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+    const dormantButtonClass = "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+
     return (
         <Popover>
             <nav className="bg-gray-800">
@@ -26,54 +34,92 @@ export function Navbar() {
                             </div>
                             <div className="hidden sm:block sm:ml-6">
                                 <div className="flex space-x-4">
-                                    <a href="#" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Dashboard</a>
+                                    <button
+                                        onClick={() => { setNavState("Dashboard") }}
+                                        type="button"
+                                        className={navState === "Dashboard" ? activeButtonClass : dormantButtonClass}
+                                        aria-current="page">
+                                        Dashboard
+                                    </button>
 
-                                    <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
+                                    <button
+                                        onClick={() => { setNavState("Team") }}
+                                        type="button"
+                                        className={navState === "Team" ? activeButtonClass : dormantButtonClass}>
+                                        Team
+                                    </button>
 
-                                    <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                                    <button
+                                        onClick={() => { setNavState("Projects") }}
+                                        type="button"
+                                        className={navState === "Projects" ? activeButtonClass : dormantButtonClass}>
+                                        Projects
+                                    </button>
 
-                                    <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Calendar</a>
+                                    <button
+                                        onClick={() => { setNavState("Calendar") }}
+                                        type="button"
+                                        className={navState === "Calendar" ? activeButtonClass : dormantButtonClass}>
+                                        Calendar
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                            <button type="button" className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                                <span className="sr-only">View notifications</span>
+                        {user ?
+                            <LoggedInNavigation />
+                            :
+                            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                                <button
+                                    onClick={() => { setNavState("Login") }}
+                                    type="button"
+                                    className="bg-gray-800 p-1 rounded-md text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                                    Login
+                                </button>
+                            </div>
+                        }
 
-                                <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                                </svg>
-                            </button>
-
-
-                            <Popover className="ml-3 relative">
-                                <div>
-                                    <Popover.Button type="button" className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                        <span className="sr-only">Open user menu</span>
-                                        <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-                                    </Popover.Button>
-                                </div>
-
-                                <Popover.Panel className="origin-top-right absolute right-0 mt-2 w-48 flex flex-col rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button">
-                                    <Popover.Button><a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-0">Your Profile</a></Popover.Button>
-                                    <Popover.Button><a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-1">Settings</a></Popover.Button>
-                                    <Popover.Button><a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-2">Sign out</a></Popover.Button>
-                                </Popover.Panel>
-                            </Popover>
-                        </div>
                     </div>
                 </div>
 
 
                 <div className="sm:hidden" id="mobile-menu">
                     <Popover.Panel className="px-2 pt-2 pb-3 space-y-1 flex flex-col">
-                        <Popover.Button><a href="#" className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a></Popover.Button>
+                        <Popover.Button>
+                            <button
+                                onClick={() => { setNavState("Dashboard") }}
+                                type="button"
+                                className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+                                aria-current="page">
+                                Dashboard
+                            </button>
+                        </Popover.Button>
 
-                        <Popover.Button><a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a></Popover.Button>
+                        <Popover.Button>
+                            <button
+                                onClick={() => { setNavState("Team") }}
+                                type="button"
+                                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                                Team
+                            </button>
+                        </Popover.Button>
 
-                        <Popover.Button><a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a></Popover.Button>
+                        <Popover.Button>
+                            <button
+                                onClick={() => { setNavState("Projects") }}
+                                type="button"
+                                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                                Projects
+                            </button>
+                        </Popover.Button>
 
-                        <Popover.Button><a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a></Popover.Button>
+                        <Popover.Button>
+                            <button
+                                onClick={() => { setNavState("Calendar") }}
+                                type="button"
+                                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                                Calendar
+                            </button>
+                        </Popover.Button>
                     </Popover.Panel>
                 </div>
             </nav>

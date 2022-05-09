@@ -1,20 +1,32 @@
+import { useState } from "react"
 import Button from "./components/Button"
 import List from "./components/List"
 import { Navbar } from "./components/Navbar/Navbar"
 import Widget from "./components/Widget"
 
+type NavigationPages = "Dashboard" | "Team" | "Projects" | "Calendar" | "Login"
+
 export function App() {
+  const [navState, setNavState] = useState<NavigationPages>("Team")
+
   return (
-    <main
-      className={"mh-10 mv-1"}
-      style={{ outline: '2px solid red' }}
-    >
-      <Navbar />
+    <>
+      <Navbar navState={navState} setNavState={setNavState}/>
+      <main
+        className="mh-10 mv-1 px-8 min-h-fit "
+        // style={{ outline: '2px solid red'}}
+      >
 
-      <List initialItems={['Diego', 'Rodz', 'Mayk']} />
+        {navState === 'Dashboard' && <div><p>Dashboard</p></div>}
+        {navState === 'Team' && <List initialItems={['Diego', 'Rodz', 'Mayk']} />}
+        {navState === 'Projects' && <div><p>Projects</p></div>}
+        {navState === 'Calendar' && <div><p>Calendar</p></div>}
+        {navState === 'Login' && <div><p>Login</p></div>}
 
-      <Widget />
-    </main>
+        <Widget />
+      </main>
+    </>
+
 
   )
 }
