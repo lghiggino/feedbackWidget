@@ -1,8 +1,7 @@
 import { useState } from "react"
-import Button from "./components/Button"
 import List from "./components/List"
 import { Navbar } from "./components/Navbar/Navbar"
-import Widget from "./components/Widget"
+import Widget from "./components/Widget/Widget"
 
 type NavigationPages = "Dashboard" | "Team" | "Projects" | "Calendar" | "Login"
 

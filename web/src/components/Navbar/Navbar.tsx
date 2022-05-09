@@ -32,6 +32,7 @@ export function Navbar({ navState, setNavState }: any) {
                                 <img className="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow" />
                                 <img className="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow" />
                             </div>
+                            { user &&
                             <div className="hidden sm:block sm:ml-6">
                                 <div className="flex space-x-4">
                                     <button
@@ -64,6 +65,7 @@ export function Navbar({ navState, setNavState }: any) {
                                     </button>
                                 </div>
                             </div>
+                            }
                         </div>
                         {user ?
                             <LoggedInNavigation />
