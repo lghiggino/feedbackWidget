@@ -13,10 +13,10 @@ export function App() {
     <>
       <Navbar navState={navState} setNavState={setNavState}/>
       <main
-        className="mh-10 mv-1 px-8 min-h-fit "
+        className="mh-10 mv-1 px-8"
         // style={{ outline: '2px solid red'}}
       >
-
+        <div className="mb-8 bg-gray-700"></div>
         {navState === 'Dashboard' && <div><p>Dashboard</p></div>}
         {navState === 'Team' && <List initialItems={['Diego', 'Rodz', 'Mayk']} />}
         {navState === 'Projects' && <div><p>Projects</p></div>}

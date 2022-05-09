@@ -28,7 +28,9 @@ export default function List({ initialItems }: ListProps) {
                 placeholder="Novo usuário"
                 type="text"
                 value={newItem}
-                onChange={(ev) => { setNewItem(ev.target.value) }} />
+                onChange={(ev) => { setNewItem(ev.target.value) }} 
+                className="min-w=[304px] min-h=[112px] mr-2 mb-4 text-xs placeholder-zinc-400 text-zinc-100 border-zinc-600 bg-transparent rounded-md focus:border-brand-500 focus:ring-brand-500 focus:ring-1 focus:outline-none scrollbar-thumb-zinc-700 scrollbar-track-transparent scrollbar-thin resize-none"
+            />
 
             <Button
                 onClick={() => { addToList(newItem) }}
@@ -39,7 +41,7 @@ export default function List({ initialItems }: ListProps) {
             <ul>
                 {list.map(item =>
                     <li key={item} className={"flex flex-row"} >
-                        <p className="mr-10" style={{minWidth: '120px'}}>{item}</p>
+                        <p className="mr-10 mb-1" style={{minWidth: '173px'}}>{item}</p>
                         <Button
                             onClick={() => { removeFromList(item) }}
                             text={"Remover"}
