@@ -48,7 +48,8 @@ O backend estará disponível em http://localhost:3333
 
 ## 💻 Projeto
 
-FeedbackWidget é um weedget que permite que usuários enviem feedback sobre bugs, ideias ou outras informações aos desenvolvedores de um website. Ao enviar o feedback é possível realizar uma captura da tela e enviar um comentário. Esse feedback é então enviado por email aos desenvolvedores.
+FeedbackWidget é um widget que permite que usuários enviem feedback sobre bugs, ideias ou outras informações aos desenvolvedores de um website. 
+Ao enviar o feedback é possível realizar uma captura da tela e enviar um comentário. Esse feedback é então enviado por email aos desenvolvedores.
 
 Esse projeto foi desenvolvido durante a NLW Return da Rocketseat, entre os dias 02 a 06/05/2022
 
