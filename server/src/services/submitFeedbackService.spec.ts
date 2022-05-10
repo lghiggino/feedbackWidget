@@ -13,7 +13,8 @@ describe("submitFeedbackService", () => {
         await expect(submitFeedbackService.execute({
             type: 'BUG',
             comment: 'Tá bugadaço',
-            screenshot: 'data:image/png;base64.......test.jpg'
+            screenshot: 'data:image/png;base64.......test.jpg',
+            createdAt: ''
         })).resolves.not.toThrow()
 
         expect(createFeedbackSpy).toHaveBeenCalled()
@@ -24,7 +25,8 @@ describe("submitFeedbackService", () => {
         await expect(submitFeedbackService.execute({
             type: '',
             comment: 'Tá bugadaço',
-            screenshot: 'data:image/png;base64.......test.jpg'
+            screenshot: 'data:image/png;base64.......test.jpg',
+            createdAt: ''
         })).rejects.toThrow()
     })
 
@@ -32,7 +34,8 @@ describe("submitFeedbackService", () => {
         await expect(submitFeedbackService.execute({
             type: 'BUG',
             comment: '',
-            screenshot: 'data:image/png;base64.......test.jpg'
+            screenshot: 'data:image/png;base64.......test.jpg',
+            createdAt: ''
         })).rejects.toThrow()
     })
 
@@ -40,7 +43,8 @@ describe("submitFeedbackService", () => {
         await expect(submitFeedbackService.execute({
             type: 'BUG',
             comment: 'Tá bugadaço',
-            screenshot: 'test.jpg'
+            screenshot: 'test.jpg',
+            createdAt: ''
         })).rejects.toThrow()
     })
 })

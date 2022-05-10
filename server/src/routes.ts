@@ -1,8 +1,10 @@
 import dayjs from "dayjs";
 import { Router } from "express";
 import { NodemailerMailAdapter } from "./adapters/nodemailer/nodemailer.mail.adapter";
-import { PrismaFeedbacksRepository } from "./repositories/prisma/prismaFeedbacksRepository";
+import { PrismaFeedbacksRepository, PrismaTeamMemberRepository } from "./repositories/prisma/prismaFeedbacksRepository";
 import { SubmitFeedbackService } from "./services/submitFeedbackService";
+import { TeamMemberRepository } from "./repositories/teamMemberRepository";
+import { TeamMemberService } from "./services/teamMemberService";
 
 export const routes = Router()
 
@@ -36,6 +38,22 @@ routes.post('/feedbacks', async (req, res) => {
         type,
         comment,
         screenshot,
+        createdAt
+    })
+
+    return res.status(201).json({ data: feedback })
+})
+
+routes.post('/team', async (req, res) => {
+    const { name } = req.body
+
+    const teamMemberRepository = new PrismaTeamMemberRepository()
+    const teamMemberService = new TeamMemberService(teamMemberRepository)
+
+    const createdAt = dayjs().format('yyyy-mm-dd')
+
+    const feedback = await teamMemberService.execute({
+        name,
         createdAt
     })
 
