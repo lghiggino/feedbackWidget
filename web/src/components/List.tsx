@@ -13,11 +13,12 @@ export default function List() {
     async function getInitialItems() {
         try {
             const data: string[] = await api.get('/team')
-            if (!data) {
+            console.log("data", data)
+            // if (!data) {
                 setList(initialItems)
-            } else {
-                setList(data)
-            }
+            // } else {
+            //     setList(data)
+            // }
         } catch (error) {
             console.error(error)
         }
