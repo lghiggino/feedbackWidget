@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { MailAdapter } from "../adapters/mail.adapter";
 import { FeedbacksRepository } from "../repositories/feedbacksRepository";
 
@@ -5,6 +6,7 @@ interface SubmitFeedbackServiceRequest {
     type: string;
     comment: string;
     screenshot?: string;
+    createdAt: string;
 }
 
 export class SubmitFeedbackService {
@@ -14,7 +16,7 @@ export class SubmitFeedbackService {
     ) { }
 
     async execute(request: SubmitFeedbackServiceRequest) {
-        const { type, comment, screenshot } = request;
+        const { type, comment, screenshot, createdAt } = request;
 
         if(!type){
             throw new Error('Type is required')
@@ -28,10 +30,12 @@ export class SubmitFeedbackService {
             throw new Error('Invalid Screenshot format')
         }
 
+
         const feedback = await this.feedbacksRepository.create({
             type,
             comment,
-            screenshot
+            screenshot,
+            createdAt
         });
 
         await this.mailAdapter.sendMail({

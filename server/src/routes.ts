@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { Router } from "express";
 import { NodemailerMailAdapter } from "./adapters/nodemailer/nodemailer.mail.adapter";
 import { PrismaFeedbacksRepository } from "./repositories/prisma/prismaFeedbacksRepository";
@@ -29,10 +30,13 @@ routes.post('/feedbacks', async (req, res) => {
         nodemailerMailAdapter
     )
 
+    const createdAt = dayjs().format('yyyy-mm-dd')
+
     const feedback = await submitFeedbackService.execute({
         type,
         comment,
-        screenshot
+        screenshot,
+        createdAt
     })
 
     return res.status(201).json({ data: feedback })
