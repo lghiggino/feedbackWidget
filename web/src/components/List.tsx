@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import Button from "./Button"
+import Button from "../components/Widget/Button"
 
 type ListProps = {
     initialItems: string[]

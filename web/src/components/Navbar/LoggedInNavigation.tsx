@@ -1,6 +1,6 @@
 import { Popover } from "@headlessui/react";
 
-export function LoggedInNavigation() {
+export function LoggedInNavigation({ setUser }: any) {
     return (
         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <button type="button" className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
@@ -19,9 +19,28 @@ export function LoggedInNavigation() {
                 </div>
 
                 <Popover.Panel className="origin-top-right absolute right-0 mt-2 w-48 flex flex-col rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button">
-                    <Popover.Button><a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-0">Your Profile</a></Popover.Button>
-                    <Popover.Button><a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-1">Settings</a></Popover.Button>
-                    <Popover.Button><a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-2">Sign out</a></Popover.Button>
+                    <Popover.Button>
+                        <button
+                            className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-0"
+                        >
+                            Your Profile
+                        </button>
+                    </Popover.Button>
+                    <Popover.Button>
+                        <button
+                            className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-1"
+                        >
+                            Settings
+                        </button>
+                    </Popover.Button>
+                    <Popover.Button>
+                        <button
+                            className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-2"
+                            onClick={() => { setUser(false) }}
+                        >
+                            Sign out
+                        </button>
+                    </Popover.Button>
                 </Popover.Panel>
             </Popover>
         </div>

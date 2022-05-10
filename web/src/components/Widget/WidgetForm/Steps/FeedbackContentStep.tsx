@@ -4,7 +4,7 @@ import { FeedbackType, feedbackTypes } from ".."
 import { ArrowLeft, Camera } from "phosphor-react";
 import { ScreenshotButton } from "../ScreenshotButton";
 
-import { api } from '../../../lib/api'
+import { api } from '../../../../lib/api'
 import { Loading } from "../../Loading";
 
 
