@@ -5,4 +5,5 @@ export interface TeamMemberCreateData {
 
 export interface TeamMemberRepository {
     create: (data: TeamMemberCreateData) => Promise<void>;
+    getAll: () => Promise<void>
 }

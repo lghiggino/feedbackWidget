@@ -24,5 +24,10 @@ export class TeamMemberService {
 
         return teamMember
     }
+
+    async getAll(){
+        const allTeamMembers = await this.teamMemberRepository.getAll()
+        return allTeamMembers
+    }
 }
 

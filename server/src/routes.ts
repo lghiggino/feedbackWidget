@@ -52,10 +52,20 @@ routes.post('/team', async (req, res) => {
 
     const createdAt = dayjs().format('yyyy-mm-dd')
 
-    const feedback = await teamMemberService.execute({
+    const teamMember = await teamMemberService.execute({
         name,
         createdAt
     })
 
-    return res.status(201).json({ data: feedback })
+    return res.status(201).json({ data: teamMember })
+})
+
+routes.get('/team', async (req, res) => {
+    const teamMemberRepository = new PrismaTeamMemberRepository()
+    const teamMemberService = new TeamMemberService(teamMemberRepository)
+
+
+    const allTeamMembers = await teamMemberService.getAll()
+
+    return res.status(201).json({ data: allTeamMembers })
 })

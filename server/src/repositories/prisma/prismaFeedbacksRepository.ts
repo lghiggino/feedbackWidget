@@ -14,7 +14,7 @@ export class PrismaFeedbacksRepository implements FeedbacksRepository {
         });
     }
 
-    async findAll(){
+    async getAll(){
         await prisma.feedback.findMany()
     }
 }
@@ -26,5 +26,9 @@ export class PrismaTeamMemberRepository implements TeamMemberRepository {
                 name
             }
         });
+    }
+
+    async getAll(){
+        await prisma.team.findMany()
     }
 }
