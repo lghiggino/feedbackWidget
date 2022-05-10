@@ -3,13 +3,29 @@ import { useEffect, useState } from "react"
 import Button from "../components/Widget/Button"
 import { api } from "../lib/api"
 
-type ListProps = {
-    initialItems: string[]
-}
 
-export default function List({ initialItems }: ListProps) {
-    const [list, setList] = useState(initialItems)
+
+export default function List() {
+    const initialItems = ['Diego', 'Rodz', 'Mayk']
+    const [list, setList] = useState<string[]>([])
     const [newItem, setNewItem] = useState('')
+
+    async function getInitialItems() {
+        try {
+            const data: string[] = await api.get('/team')
+            if (!data) {
+                setList(initialItems)
+            } else {
+                setList(data)
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    useEffect(() => {
+        getInitialItems()
+    }, [])
 
     async function addToList(text: string) {
         setList(state => [...state, text])

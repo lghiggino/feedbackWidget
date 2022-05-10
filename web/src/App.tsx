@@ -20,7 +20,7 @@ export function App() {
         {user &&
           <>
             {navState === 'Dashboard' && <div><p>Dashboard</p></div>}
-            {navState === 'Team' && <List initialItems={['Diego', 'Rodz', 'Mayk']} />}
+            {navState === 'Team' && <List />}
             {navState === 'Projects' && <div><p>Projects</p></div>}
             {navState === 'Calendar' && <div><p>Calendar</p></div>}
           </>
