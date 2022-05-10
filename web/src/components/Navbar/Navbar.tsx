@@ -3,9 +3,7 @@ import { Popover } from "@headlessui/react"
 import { LoggedInNavigation } from "./LoggedInNavigation"
 
 
-
-export function Navbar({ navState, setNavState }: any) {
-    const [user, setUser] = useState<boolean>(false)
+export function Navbar({user, setUser, navState, setNavState }: any) {
     const activeButtonClass = "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
     const dormantButtonClass = "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
 
